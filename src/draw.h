@@ -1,0 +1,14 @@
+void prepareScene();
+void presentScene();
+void blit(SDL_Texture *texture, int x, int y);
+void blitRect(SDL_Texture *texture, SDL_Rect *src, int x, int y);
+void drawStarfield();
+void drawBackground();
+void drawButton();
+void drawShard();
+void drawExplosions();
+void drawFighters();
+void drawBullets();
+void drawMeteors();
+void drawMissile();
+void drawPointsPods();

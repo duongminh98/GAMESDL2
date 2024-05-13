@@ -1,0 +1,34 @@
+#ifndef common__h_
+#define common__h_
+#include<bits/stdc++.h>
+#include "ctype.h"
+#include "defs.h"
+#include "math.h"
+#include "SDL2/SDL.h"
+#include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
+#include "structs.h"
+#include "background.h"
+#include "draw.h"
+#include <SDL2/SDL_image.h>
+#include "highscores.h"
+#include "stage.h"
+#include "text.h"
+#include "init.h"
+#include <algorithm>
+#include "input.h"
+#include "player.h"
+#include "sound.h"
+#include <SDL2/SDL_mixer.h>
+#include "text.h"
+#include "util.h"
+#include "explosions.h"
+#include "fire.h"
+#include "points.h"
+#include "fighters.h"
+#include "mouse.h"
+#include "button.h"
+#include "threat.h"
+#include "main.h"
+#endif
