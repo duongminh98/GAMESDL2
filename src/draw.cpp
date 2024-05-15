@@ -2,6 +2,7 @@
 #include <string.h>
 using namespace std;
 extern Game game;
+extern Entity *player;
 extern Stage stage;
 extern SDL_Texture *bulletTexture;
 extern SDL_Texture *enemyTexture;
@@ -20,6 +21,11 @@ extern SDL_Texture *meteoriteTexture;
 extern SDL_Texture *missileTexture;
 extern SDL_Texture *background;
 extern SDL_Texture *fontTexture;
+extern SDL_Texture *missileFlame;
+extern SDL_Texture *enginePlayer;
+extern SDL_Texture *engineEnemy;
+extern SDL_Texture *flamePlayer;
+extern SDL_Texture *flameEnemy;
 extern Star stars[MAX_STARS];
 extern SDL_Rect play;
 extern SDL_Rect highscore;
@@ -134,6 +140,45 @@ void drawFighters()
 	for (e = stage.fighterHead.next; e != NULL; e = e->next)
 	{
 		blit(e->texture, e->x, e->y);
+		if(e!=player)
+		{
+			SDL_Rect dest1,dest2;
+			SDL_QueryTexture(engineEnemy, NULL, NULL, &dest1.w, &dest1.h);
+			dest1.w/=3.25;
+			dest1.h/=3.25;
+			dest1.x=e->x+e->w-10;
+			dest1.y=e->y+e->h/2-dest1.h/2;
+			SDL_RenderCopy(game.renderer,engineEnemy,NULL,&dest1);
+			SDL_QueryTexture(flameEnemy, NULL, NULL, &dest2.w, &dest2.h);
+			dest2.w/=3.25;
+			dest2.h/=3.25;
+			dest2.x=e->x+e->w+dest1.w-20;
+			dest2.y=e->y+e->h/2-dest1.h/2+dest1.h/2-dest2.w/2;
+			if(rand()%2)
+				SDL_RenderCopy(game.renderer,flameEnemy,NULL,&dest2);
+		}
+		if(e==player)
+		{		
+				SDL_Rect dest1,dest2;
+				SDL_QueryTexture(enginePlayer, NULL, NULL, &dest1.w, &dest1.h);
+				dest1.w/=3.25;
+				dest1.h/=3.25;
+				dest1.x=e->x-dest1.w+10;
+				dest1.y=e->y+e->h/2-dest1.h/2;
+				SDL_RenderCopy(game.renderer,enginePlayer,NULL,&dest1);
+			if(game.keyboard[SDL_SCANCODE_W] or game.keyboard[SDL_SCANCODE_S] or game.keyboard[SDL_SCANCODE_A] or game.keyboard[SDL_SCANCODE_D])
+			{
+				
+				SDL_QueryTexture(flamePlayer, NULL, NULL, &dest2.w, &dest2.h);
+				dest2.w/=1.25;
+				dest2.h/=1.25;
+				dest2.x=e->x-dest1.w-dest2.w+30;
+				dest2.y=e->y+e->h/2-dest1.h/2+dest1.h/2-dest2.w/2;
+				if(rand()%2)
+				SDL_RenderCopy(game.renderer,flamePlayer,NULL,&dest2);
+			}
+		}
+
 	}
 }
 void drawBullets()
@@ -161,9 +206,16 @@ void drawMissile()
 		SDL_Rect dest;
 		dest.x =m->x;
 		dest.y =m->y;
-		dest.w =m->w;
-		dest.h =m->h;
+		dest.w =m->w/1.5;
+		dest.h =m->h/1.5;
 		SDL_RenderCopy(game.renderer,m->texture, NULL, &dest);
+		SDL_QueryTexture(missileFlame, NULL, NULL, &dest.w, &dest.h);
+		dest.w*=2;
+		dest.h*=2;
+		dest.x =m->x+(m->w/1.5)-30;
+		dest.y =m->y+(m->h/1.5)/2-dest.h/2;
+		if(rand()%2)
+		SDL_RenderCopy(game.renderer,missileFlame,NULL,&dest);
 	}
 }
 void drawPointsPods()
