@@ -84,9 +84,13 @@ static void logic()
 {	
 	game.MainLogic();
     if(stage.score>=10)
-    spawnMissile();
+    {   
+        spawnMissile();
+    }
     if(stage.score>=5)
-    spawnMeteors();
+    {   
+        spawnMeteors();
+    }
     if (player == NULL and --stageResetTimer <= 0)
     {
         addHighscore(stage.score);

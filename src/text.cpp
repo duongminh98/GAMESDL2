@@ -134,14 +134,28 @@ void drawHighscores()
 	
 }
 void drawHud()
-{
-	drawText(10, 10, 255, 255, 255, TEXT_LEFT,"SCORE: %03d", stage.score);
+{	
+	if(stage.score>=10)
+    {   
+        int r=rand()%255;
+        int g=rand()%255;
+        int b=rand()%255;
+        drawText(10, 46, r, g, b, TEXT_LEFT,"BECAREFUL OF MISSILE!!!!");
+    }
+    if(stage.score>=5)
+    {   
+        int r=rand()%255;
+        int g=rand()%255;
+        int b=rand()%255;
+        drawText(10, 10, r, g, b, TEXT_LEFT,"BECAREFUL OF METEORS!!!!");
+    }
+	drawText(SCREEN_WIDTH - 10, 10, 255, 255, 255, TEXT_RIGHT,"SCORE: %03d", stage.score);
 	if (stage.score < highscores.highscore[0].score)
 	{
-		drawText(SCREEN_WIDTH - 10, 10, 255, 255, 255,TEXT_RIGHT, "HIGHSCORE: %03d", highscores.highscore[0].score);
+		drawText(SCREEN_WIDTH - 10, 46, 255, 255, 255,TEXT_RIGHT, "HIGHSCORE: %03d", highscores.highscore[0].score);
 	}
 	else
 	{
-		drawText(SCREEN_WIDTH - 10, 10, 0, 255, 0,TEXT_RIGHT, "HIGHSCORE: %03d", stage.score);
+		drawText(SCREEN_WIDTH - 10, 46, 0, 255, 0,TEXT_RIGHT, "HIGHSCORE: %03d", stage.score);
 	}
 }
