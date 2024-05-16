@@ -6,6 +6,7 @@ Entity *player;
 int enemySpawnTimer;
 int meteorsSpawnTimer;
 int missileSpawnTimer;
+int enemySpawnTimerC=120;
 static int stageResetTimer;
 using namespace std;
 static void logic();
@@ -79,6 +80,7 @@ void initStage()
     meteorsSpawnTimer = 0;
     missileSpawnTimer = 0;
 	stageResetTimer = FPS * 3;
+    enemySpawnTimerC = 120;
 }
 static void logic()
 {	

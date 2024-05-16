@@ -3,6 +3,7 @@ extern Stage stage;
 extern Entity *player;
 extern int enemySpawnTimer;
 extern SDL_Texture *enemyTexture;
+extern int enemySpawnTimerC;
 void doFighters()
 {
     Entity *e, *prev;
@@ -49,7 +50,7 @@ void spawnEnemies()
         enemy->dy = (-10 + (rand() % 20))/5;
         enemy->side = SIDE_ENEMY;
         enemy->reload = 60;
-        enemySpawnTimer = FPS+(rand() % 60);
+        enemySpawnTimer = FPS/2+(rand() % enemySpawnTimerC);
 		SDL_QueryTexture(enemy->texture, NULL, NULL, &enemy->w, &enemy->h);
 		
 	}

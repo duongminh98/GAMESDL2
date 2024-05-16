@@ -2,6 +2,7 @@
 extern Entity *player;
 extern Stage stage;
 extern SDL_Texture *pointsTexture;
+extern int enemySpawnTimerC;
 void addPointsPod(int x, int y)
 {
     Entity *e;
@@ -51,6 +52,7 @@ void doPointsPods()
         {
             e->health = 0;
             stage.score++;
+            enemySpawnTimerC-=10;
             playSound(SND_POINTS, CH_POINTS);
         }
         if (--e->health <= 0)
