@@ -1,5 +1,6 @@
 #include "common.h"
 extern Game game;
+using namespace std;
 SDL_Texture *bulletTexture;
 SDL_Texture *enemyTexture;
 SDL_Texture *alienBulletTexture;
@@ -32,6 +33,9 @@ SDL_Texture *flameEnemy;
 SDL_Texture *soundOnTexture;
 SDL_Texture *soundOffTexture;
 TTF_Font 	*ourFont;
+int public_key;
+int private_key;
+int n;
 void initSDL()
 {
 	int rendererFlags, windowFlags;
@@ -77,6 +81,25 @@ void initSDL()
 	soundOnTexture		= IMG_LoadTexture(game.renderer,"res/soundOnBlack.png");
 	soundOffTexture		= IMG_LoadTexture(game.renderer,"res/soundOffBlack.png");
 	ourFont 			= TTF_OpenFont("res/ariblk.ttf",72);
+	int prime1 = 463;
+    int prime2 = 71;
+    n = prime1 * prime2;
+    int fi = (prime1 - 1) * (prime2 - 1);
+    int e = 2;
+    while (1) 
+    {
+        if (__gcd(e, fi) == 1)
+            break;
+        e++;
+    }
+    public_key = e;
+    int d = 2;
+    while (1) {
+        if ((d * e) % fi == 1)
+            break;
+        d++;
+    }
+    private_key = d;
 }
 void cleanup()
 {	

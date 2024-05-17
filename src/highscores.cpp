@@ -8,6 +8,44 @@ static void draw();
 void doNameInput();
 Highscore *newHighscore;
 int cursorBlink;
+extern int public_key;
+extern int private_key;
+extern int n;
+long long int encrypt(double message)
+{
+    int e = public_key;
+    long long int encrtxt = 1;
+    while (e--) 
+    {
+        encrtxt *= message;
+        encrtxt %= n;
+    }
+    return encrtxt;
+}
+long long int decrypt(int encrtxt)
+{
+    int d = private_key;
+    long long int dec = 1;
+    while (d--) 
+    {
+        dec *= encrtxt;
+        dec %= n;
+    }
+    return dec;
+}
+vector<int> encoder(string message)
+{
+    vector<int> res;
+    for (auto& u : message)
+        res.push_back(encrypt((int)u));
+    return res;
+}
+string decoder(vector<int> encoded)
+{
+    string s;
+    for (auto& num : encoded)s += decrypt(num);
+    return s;
+}
 bool cmp(Highscore& a,Highscore& b)
 {
 	return a.score>b.score;
@@ -19,7 +57,20 @@ void initHighscoreTable()
 	memset(&highscores, 0, sizeof(Highscores));
 	for (int i = 0; i < NUM_HIGHSCORES; i++)
 	{
-        in>>highscores.highscore[i].name>>highscores.highscore[i].score;
+        int q;vector<int>p;
+        in>>q;
+        while(q!=0)
+        {
+            p.push_back(q);
+            in>>q;
+        }
+        if(q==0)
+        {    
+            STRNCPY(highscores.highscore[i].name,decoder(p).c_str(),MAX_SCORE_NAME_LENGTH);
+            in>>highscores.highscore[i].score;
+            cout<<highscores.highscore[i].name<<" "<<highscores.highscore[i].score<<endl;
+        }
+        
 	}
     in.close();
 	newHighscore = NULL;
@@ -56,13 +107,19 @@ void doNameInput()
         }
         newHighscore = NULL;
     }
-    
+
     ofstream out;
     out.open("High_Score/High_Score.txt");
     for (int i = 0 ; i < NUM_HIGHSCORES ; i++)
     {
         if(highscores.highscore[i].score!=0)
-        out<<highscores.highscore[i].name<<" "<<highscores.highscore[i].score<<"\n";
+        {
+        vector<int> coded = encoder(highscores.highscore[i].name);
+        for (auto& p : coded)
+            out << p<<" ";
+        out<<"0 ";
+        out<<highscores.highscore[i].score<<" ";
+        }
     }
     out.close();
 }
