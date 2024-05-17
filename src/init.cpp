@@ -29,6 +29,8 @@ SDL_Texture *enginePlayer;
 SDL_Texture *engineEnemy;
 SDL_Texture *flamePlayer;
 SDL_Texture *flameEnemy;
+SDL_Texture *soundOnTexture;
+SDL_Texture *soundOffTexture;
 void initSDL()
 {
 	int rendererFlags, windowFlags;
@@ -70,6 +72,8 @@ void initSDL()
 	engineEnemy			= IMG_LoadTexture(game.renderer,"res/01 (1).png");
 	flamePlayer			= IMG_LoadTexture(game.renderer,"res/flameengine.png");
 	flameEnemy			= IMG_LoadTexture(game.renderer,"res/08.png");
+	soundOnTexture		= IMG_LoadTexture(game.renderer,"res/soundOnBlack.png");
+	soundOffTexture		= IMG_LoadTexture(game.renderer,"res/soundOffBlack.png");
 }
 void cleanup()
 {	

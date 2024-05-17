@@ -26,12 +26,16 @@ extern SDL_Texture *enginePlayer;
 extern SDL_Texture *engineEnemy;
 extern SDL_Texture *flamePlayer;
 extern SDL_Texture *flameEnemy;
+extern SDL_Texture *soundOnTexture;
+extern SDL_Texture *soundOffTexture;
 extern Star stars[MAX_STARS];
 extern SDL_Rect play;
 extern SDL_Rect highscore;
 extern SDL_Rect out;
 extern SDL_Rect mouse;
 extern SDL_Rect destBackground;
+SDL_Rect sound;
+extern int toggle;
 void prepareScene()
 {
 	SDL_SetRenderDrawColor(game.renderer, 32, 32, 32, 255);
@@ -89,6 +93,9 @@ void drawButton()
 	highscore.y=300+destBackground.h+36;
 	out.x=SCREEN_WIDTH/2-destBackground.w/2;
 	out.y=300+destBackground.h*2+72;
+	SDL_QueryTexture(soundOnTexture, NULL, NULL, &sound.w, &sound.h);
+	sound.x=0;
+	sound.y=SCREEN_HEIGHT-sound.h;
 	SDL_RenderCopy(game.renderer, menuBackground, NULL, &Background);
 	if (collision(mouse.x, mouse.y, 1, 1, play.x, play.y, play.w, play.h))
 	{	
@@ -105,6 +112,14 @@ void drawButton()
 		blit(exitTexture2, SCREEN_WIDTH/2-destBackground.w/2, 300+destBackground.h*2+72);
 	}
 	else blit(exitTexture1, SCREEN_WIDTH/2-destBackground.w/2, 300+destBackground.h*2+72);
+	if(toggle==0)blit(soundOnTexture, sound.x, sound.y);
+	else blit(soundOffTexture, sound.x, sound.y);
+	if (collision(mouse.x, mouse.y, 1, 1, sound.x, sound.y, sound.w, sound.h) and game.mouse[0])
+	{
+		game.mouse[0]=0;
+		if(toggle)toggle=0;
+		else toggle=1;
+	}
 }
 void drawShard()
 {

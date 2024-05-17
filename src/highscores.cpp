@@ -14,12 +14,14 @@ bool cmp(Highscore& a,Highscore& b)
 }
 void initHighscoreTable()
 {
+    ifstream in;
+    in.open("High_Score/High_Score.txt");
 	memset(&highscores, 0, sizeof(Highscores));
 	for (int i = 0; i < NUM_HIGHSCORES; i++)
 	{
-		highscores.highscore[i].score = NUM_HIGHSCORES - i;
-		STRNCPY(highscores.highscore[i].name, "ANONYMOUS", MAX_SCORE_NAME_LENGTH);
+        in>>highscores.highscore[i].name>>highscores.highscore[i].score;
 	}
+    in.close();
 	newHighscore = NULL;
 	cursorBlink = 0;
 }
@@ -54,6 +56,14 @@ void doNameInput()
         }
         newHighscore = NULL;
     }
+    ofstream out;
+    out.open("High_Score/High_Score.txt");
+    for (int i = 0 ; i < NUM_HIGHSCORES ; i++)
+    {
+        if(highscores.highscore[i].score!=0)
+        out<<highscores.highscore[i].name<<" "<<highscores.highscore[i].score<<"\n";
+    }
+    out.close();
 }
 static void logic()
 {

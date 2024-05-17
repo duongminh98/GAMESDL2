@@ -2,6 +2,7 @@
 Game game;
 Highscores highscores;
 Stage stage;
+int toggle=0;
 using namespace std;
 int main(int argc, char *argv[])
 {
@@ -12,6 +13,10 @@ int main(int argc, char *argv[])
 	initMouse();
 	while (1)
 	{	
+		if(toggle==1)
+   		Mix_PauseMusic();
+   		else if(toggle==0)
+   		Mix_ResumeMusic();
 		updateMouse();
 		prepareScene();
 		doInput();
