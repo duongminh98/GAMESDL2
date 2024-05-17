@@ -53,49 +53,49 @@ void drawNameInput(int score)
     	drawText(SCREEN_WIDTH / 2,70,255,0,0,TEXT_CENTER,"CONGRATULATIONS, YOU'VE REACHED BRONZE!");
     	drawText(SCREEN_WIDTH / 2,120,255,0,0,TEXT_CENTER,"ENTER YOUR NAME BELOW:");
     	drawText(SCREEN_WIDTH / 2,250,128,255,128,TEXT_CENTER,newHighscore->name);
-    	blit(bronzeTexture,SCREEN_WIDTH / 2+200,250);
+    	drawAtXY(bronzeTexture,SCREEN_WIDTH / 2+200,250);
     }   
     else if(score<=20)
     {
     	drawText(SCREEN_WIDTH / 2,70,255,0,0,TEXT_CENTER,"CONGRATULATIONS, YOU'VE REACHED SILVER!");
     	drawText(SCREEN_WIDTH / 2,120,255,0,0,TEXT_CENTER,"ENTER YOUR NAME BELOW:");
     	drawText(SCREEN_WIDTH / 2,250,128,255,128,TEXT_CENTER,newHighscore->name);
-    	blit(silverTexture,SCREEN_WIDTH / 2+200,250);
+    	drawAtXY(silverTexture,SCREEN_WIDTH / 2+200,250);
     }
     else if(score<=30)
     {
     	drawText(SCREEN_WIDTH / 2,70,255,0,0,TEXT_CENTER,"CONGRATULATIONS, YOU'VE REACHED GOLD!");
     	drawText(SCREEN_WIDTH / 2,120,255,0,0,TEXT_CENTER,"ENTER YOUR NAME BELOW:");
     	drawText(SCREEN_WIDTH / 2,250,128,255,128,TEXT_CENTER,newHighscore->name);
-    	blit(goldTexture,SCREEN_WIDTH / 2+200,250);
+    	drawAtXY(goldTexture,SCREEN_WIDTH / 2+200,250);
     }
     else if(score<=40)
     {
    		drawText(SCREEN_WIDTH / 2,70,255,0,0,TEXT_CENTER,"CONGRATULATIONS, YOU'VE REACHED PLATINUM!");
    		drawText(SCREEN_WIDTH / 2,120,255,0,0,TEXT_CENTER,"ENTER YOUR NAME BELOW:");
    		drawText(SCREEN_WIDTH / 2,250,128,255,128,TEXT_CENTER,newHighscore->name);
-   		blit(platinumTexture,SCREEN_WIDTH / 2+200,250);
+   		drawAtXY(platinumTexture,SCREEN_WIDTH / 2+200,250);
     }
     else if(score<=50)
     {
     	drawText(SCREEN_WIDTH / 2,70,255,0,0,TEXT_CENTER,"CONGRATULATIONS, YOU'VE REACHED DIAMOND!");
     	drawText(SCREEN_WIDTH / 2,120,255,0,0,TEXT_CENTER,"ENTER YOUR NAME BELOW:");
     	drawText(SCREEN_WIDTH / 2,250,128,255,128,TEXT_CENTER,newHighscore->name);
-    	blit(diamondTexture,SCREEN_WIDTH / 2+200,250);
+    	drawAtXY(diamondTexture,SCREEN_WIDTH / 2+200,250);
     }
     else if(score<=60)
     {
     	drawText(SCREEN_WIDTH / 2,70,255,0,0,TEXT_CENTER,"CONGRATULATIONS, YOU'VE REACHED MASTER!");
     	drawText(SCREEN_WIDTH / 2,120,255,0,0,TEXT_CENTER,"ENTER YOUR NAME BELOW:");
     	drawText(SCREEN_WIDTH / 2,250,128,255,128,TEXT_CENTER,newHighscore->name);
-    	blit(masterTexture,SCREEN_WIDTH / 2+200,250);
+    	drawAtXY(masterTexture,SCREEN_WIDTH / 2+200,250);
     }
     else 
     {
     	drawText(SCREEN_WIDTH / 2,70,255,0,0,TEXT_CENTER,"CONGRATULATIONS, YOU'VE REACHED CHALLENGER!");
     	drawText(SCREEN_WIDTH / 2,120,255,0,0,TEXT_CENTER,"ENTER YOUR NAME BELOW:");
     	drawText(SCREEN_WIDTH / 2,250,128,255,128,TEXT_CENTER,newHighscore->name);
-    	blit(challengerTexture,SCREEN_WIDTH / 2+200,250);
+    	drawAtXY(challengerTexture,SCREEN_WIDTH / 2+200,250);
     }
     if (cursorBlink < FPS / 2)
     {

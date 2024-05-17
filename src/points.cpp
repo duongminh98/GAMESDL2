@@ -12,13 +12,11 @@ void addPointsPod(int x, int y)
     stage.pointsTail = e;
     e->x = x;
     e->y = y;
-    e->dx = -(rand() % 5);
-    e->dy = (rand() % 5) - (rand() % 5);
-    e->health = FPS * 10;
+    e->dx = (rand() % 7) - (rand() % 7);
+    e->dy = (rand() % 7) - (rand() % 7);
+    e->alive = 1;
     e->texture = pointsTexture;
     SDL_QueryTexture(e->texture, NULL, NULL, &e->w, &e->h);
-    e->x -= e->w/2;
-    e->y -= e->h/2;
 }
 void doPointsPods()
 {
@@ -50,13 +48,13 @@ void doPointsPods()
         e->y += e->dy;
         if (player != NULL and collision(e->x, e->y, e->w, e->h, player->x, player->y, player->w, player->h))
         {
-            e->health = 0;
+            e->alive = 0;
             stage.score++;
             if(enemySpawnTimerC>0)
             enemySpawnTimerC-=10;
             playSound(SND_POINTS, CH_POINTS);
         }
-        if (--e->health <= 0)
+        if (!e->alive)
         {
             if (e == stage.pointsTail)
             {

@@ -13,7 +13,7 @@ void fireBullet()
 	bullet->x = player->x;
 	bullet->y = player->y;
 	bullet->dx = PLAYER_BULLET_SPEED;
-	bullet->health = 1;
+	bullet->alive = 1;
 	bullet->side = SIDE_PLAYER;
 	bullet->texture = bulletTexture;
 	SDL_QueryTexture(bullet->texture, NULL, NULL, &bullet->w, &bullet->h);
@@ -48,8 +48,8 @@ int bulletHitFighter(Entity *b)
 	{
 		if (e->side != b->side and collision(b->x, b->y, b->w, b->h, e->x, e->y, e->w, e->h))
 		{	
-			b->health = 0;
-			e->health = 0;
+			b->alive = 0;
+			e->alive = 0;
 			addExplosions(e->x, e->y, 32);
 			addShard(e);
 			if (e == player)
@@ -76,7 +76,7 @@ void fireAlienBullet(Entity *e)
     stage.bulletTail = bullet;
     bullet->x = e->x;
     bullet->y = e->y;
-    bullet->health = 1;
+    bullet->alive = 1;
     bullet->texture = alienBulletTexture;
     bullet->side = SIDE_ENEMY;
     aim(player->x + (player->w / 2), player->y + (player->h / 2), e->x, e->y, &bullet->dx, &bullet->dy);

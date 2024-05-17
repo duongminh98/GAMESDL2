@@ -4,7 +4,7 @@ class Game{
     SDL_Renderer *renderer;
     SDL_Window *window;
     Delegate delegate;
-    int keyboard[MAX_KEYBOARD_KEYS];
+    int keyboard[KEYBOARD];
     int mouse[1];
     char inputText[MAX_LINE_LENGTH];
     void MainLogic()

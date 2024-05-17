@@ -6,7 +6,7 @@
 #define PLAYER_BULLET_SPEED 16
 #define SIDE_PLAYER 0
 #define SIDE_ENEMY 1
-#define MAX_KEYBOARD_KEYS 350
+#define KEYBOARD 350
 #define MAX_STARS 250
 #define MAX_SND_CHANNELS 8
 #define MAX_LINE_LENGTH 40
@@ -14,7 +14,6 @@
 #define STRNCPY(dest, src, n) strncpy(dest, src, n); dest[n - 1] = '\0'
 #define GLYPH_HEIGHT 28
 #define GLYPH_WIDTH 18
-#define MAX_NAME_LENGTH 32
 #define MAX_SCORE_NAME_LENGTH 16
 #define MAX_RANK 7
 #define SND_MAX 10

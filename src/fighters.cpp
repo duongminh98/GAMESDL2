@@ -14,9 +14,9 @@ void doFighters()
         e->y += e->dy;
         if (e != player and e->x < -e->w)
         {
-            e->health = 0;
+            e->alive = 0;
         }
-        if (e->health == 0)
+        if (e->alive == 0)
         {
             if (e == player)
             {
@@ -45,7 +45,7 @@ void spawnEnemies()
 		enemy->x = SCREEN_WIDTH;
 		enemy->y = ((rand()*rand()) % (SCREEN_HEIGHT-100));
 		enemy->texture = enemyTexture;
-        enemy->health=1;
+        enemy->alive=1;
         enemy->dx = -(2 + (rand() % 4));
         enemy->dy = (-10 + (rand() % 20))/5;
         enemy->side = SIDE_ENEMY;

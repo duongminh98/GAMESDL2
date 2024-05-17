@@ -30,7 +30,7 @@ void initHighscores()
 {
 	game.delegate.logic = logic;
 	game.delegate.draw = draw;
-	memset(game.keyboard, 0, sizeof(int) * MAX_KEYBOARD_KEYS);
+	memset(game.keyboard, 0, sizeof(int) * KEYBOARD);
 }
 void doNameInput()
 {
@@ -56,6 +56,7 @@ void doNameInput()
         }
         newHighscore = NULL;
     }
+    
     ofstream out;
     out.open("High_Score/High_Score.txt");
     for (int i = 0 ; i < NUM_HIGHSCORES ; i++)

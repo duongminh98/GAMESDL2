@@ -4,42 +4,24 @@ extern Stage stage;
 extern Game game;
 void addExplosions(int x, int y, int num)
 {
-    Explosion *e;
+    Entity *e;
     for (int i = 0 ; i < num ; i++)
     {
-        e = new Explosion;
-        memset(e, 0, sizeof(Explosion));
+        e = new Entity;
+        memset(e, 0, sizeof(Entity));
         stage.explosionTail->next = e;
         stage.explosionTail = e;
-        e->x = x + (rand() % 32) - (rand() % 32);
-        e->y = y + (rand() % 32) - (rand() % 32);
-        e->dx = ((rand() % 10) - (rand() % 10))/10;
-        e->dy = ((rand() % 10) - (rand() % 10))/10;
-        switch (rand() % 4)
-        {
-            case 0:
-                e->r = 255;
-                break;
-            case 1:
-                e->r = 255;
-                e->g = 128;
-                break;
-            case 2:
-                e->r = 255;
-                e->g = 255;
-                break;
-            default:
-                e->r = 255;
-                e->g = 255;
-                e->b = 255;
-                break;
-        }
+        e->x = x + (rand() % 36) - (rand() % 36);e->dx = ((rand() % 10) - (rand() % 10))/10;
+        e->y = y + (rand() % 36) - (rand() % 36);e->dy = ((rand() % 10) - (rand() % 10))/10;
+        e->r=rand()%255;
+        e->g=rand()%255;
+        e->b=rand()%255;
         e->a = rand() % FPS * 3;
     }
 }
 void addShard(Entity *e)
 {
-    Shard *d;
+    Entity *d;
     int w, h;
     w = e->w / 2;
     h = e->h / 2;
@@ -47,12 +29,12 @@ void addShard(Entity *e)
     {
         for (int x = 0 ; x <= w ; x += w)
         {
-            d = new Shard;
-            memset(d, 0, sizeof(Shard));
+            d = new Entity;
+            memset(d, 0, sizeof(Entity));
             stage.shardTail->next = d;
             stage.shardTail = d;
             d->dx = (rand() % 5) - (rand() % 5);
-            d->dy = -(5 + (rand() % 12));
+            d->dy = -5;
             d->x = e->x + e->w /2;
             d->y = e->y + e->h /2;
             d->life = FPS * 2;
@@ -66,7 +48,7 @@ void addShard(Entity *e)
 }
 void doExplosions()
 {
-    Explosion *e, *prev;
+    Entity *e, *prev;
     prev = &stage.explosionHead;
     for (e = stage.explosionHead.next ; e != NULL ; e = e->next)
     {
@@ -87,7 +69,7 @@ void doExplosions()
 }
 void doShard()
 {
-    Shard *d, *prev;
+    Entity *d, *prev;
     prev = &stage.shardHead;
     for (d = stage.shardHead.next ; d != NULL ; d = d->next)
     {

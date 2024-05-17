@@ -18,7 +18,7 @@ void doMeteors()
         t->y += t->dy*METEOR_SPEED;
         if(player!=NULL and collision(player->x, player->y, player->w, player->h, t->x, t->y, t->w, t->h))
         {
-        	player->health=0;
+        	player->alive=0;
         	addExplosions(player->x, player->y, 32);
 			addShard(player);
         	playSound(SND_PLAYER_DIE, CH_PLAYER);
@@ -44,8 +44,8 @@ int bulletHitMeteor(Entity *b)
 	{
 		if (e->side != b->side and collision(b->x, b->y, b->w, b->h, e->x, e->y, e->w, e->h))
 		{	
-			b->health = 0;
-			e->health = 0;
+			b->alive = 0;
+			e->alive = 0;
 			addExplosions(b->x, b->y, 32);
 			addShard(b);
 			return 1;
@@ -60,8 +60,8 @@ int missileHitFighter(Entity *b)
 	{
 		if (collision(b->x, b->y, b->w, b->h, e->x, e->y, e->w, e->h))
 		{	
-			b->health = 0;
-			e->health = 0;
+			b->alive = 0;
+			e->alive = 0;
 			addExplosions(e->x, e->y, 32);
 			addShard(e);
 			if (e == player)
@@ -116,7 +116,7 @@ void spawnMeteors()
 		meteors->texture = meteoriteTexture;
 		SDL_QueryTexture(meteors->texture, NULL, NULL, &meteors->w, &meteors->h);
 		meteors->side = SIDE_ENEMY;
-		meteors->health=1;
+		meteors->alive=1;
 		meteorsSpawnTimer =FPS*2+(rand() % 60);
 	}
 
@@ -138,7 +138,7 @@ void spawnMissile()
 		missile->w*=2;
 		missile->h*=2;
 		missile->side = SIDE_ENEMY;
-		missile->health=1;
+		missile->alive=1;
 		missileSpawnTimer =FPS*3+(rand() % 60);
 	}
 

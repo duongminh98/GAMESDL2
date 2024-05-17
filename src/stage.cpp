@@ -15,56 +15,54 @@ static void resetStage();
 void resetStage()
 {
     Entity *e;
-    Explosion *ex;
-	Shard    *d;
     while (stage.fighterHead.next)
     {
         e = stage.fighterHead.next;
         stage.fighterHead.next = e->next;
         free(e);
     }
+    stage.fighterTail = &stage.fighterHead;
     while (stage.bulletHead.next)
     {
         e = stage.bulletHead.next;
         stage.bulletHead.next = e->next;
         free(e);
     }
+    stage.bulletTail = &stage.bulletHead;
     while (stage.explosionHead.next)
 	{
-		ex = stage.explosionHead.next;
-		stage.explosionHead.next = ex->next;
-		free(ex);
+		e = stage.explosionHead.next;
+		stage.explosionHead.next = e->next;
+		free(e);
 	}
+    stage.explosionTail = &stage.explosionHead;
 	while (stage.pointsHead.next)
     {
         e = stage.pointsHead.next;
         stage.pointsHead.next = e->next;
         free(e);
     }
+    stage.pointsTail = &stage.pointsHead;
 	while (stage.shardHead.next)
 	{
-		d = stage.shardHead.next;
-		stage.shardHead.next = d->next;
-		free(d);
+		e = stage.shardHead.next;
+		stage.shardHead.next = e->next;
+		free(e);
 	}
+    stage.shardTail = &stage.shardHead;
     while (stage.meteorHead.next)
     {
         e = stage.meteorHead.next;
         stage.meteorHead.next = e->next;
         free(e);
     }
+    stage.meteorTail = &stage.meteorHead;
     while (stage.missileHead.next)
     {
         e = stage.missileHead.next;
         stage.missileHead.next = e->next;
         free(e);
     }
-    stage.fighterTail = &stage.fighterHead;
-    stage.bulletTail = &stage.bulletHead;
-    stage.explosionTail = &stage.explosionHead;
-	stage.shardTail = &stage.shardHead;
-	stage.pointsTail = &stage.pointsHead;
-    stage.meteorTail = &stage.meteorHead;
     stage.missileTail= &stage.missileHead;
 }
 void initStage()
@@ -72,7 +70,7 @@ void initStage()
 	game.delegate.logic = logic;
 	game.delegate.draw = draw;
 	memset(&stage, 0, sizeof(Stage));
-	memset(game.keyboard, 0, sizeof(int) * MAX_KEYBOARD_KEYS);
+	memset(game.keyboard, 0, sizeof(int) * KEYBOARD);
 	resetStage();
 	stage.score = 0;
 	initPlayer();

@@ -1,7 +1,7 @@
 void prepareScene();
 void presentScene();
-void blit(SDL_Texture *texture, int x, int y);
-void blitRect(SDL_Texture *texture, SDL_Rect *src, int x, int y);
+void drawAtXY(SDL_Texture *texture, int x, int y);
+void drawAtXYPart(SDL_Texture *texture, SDL_Rect *src, int x, int y);
 void drawStarfield();
 void drawBackground();
 void drawButton();

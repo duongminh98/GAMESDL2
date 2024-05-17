@@ -15,9 +15,6 @@ void doStarfield()
 	for (int i = 0; i < MAX_STARS; i++)
 	{
 		stars[i].x -= stars[i].speed;
-		if (stars[i].x < 0)
-		{
-			stars[i].x = SCREEN_WIDTH + stars[i].x;
-		}
+		if (stars[i].x < 0)stars[i].x = SCREEN_WIDTH + stars[i].x;
 	}
 }

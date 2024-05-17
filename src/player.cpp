@@ -1,6 +1,6 @@
 #include "common.h"
-extern Entity      *player;
-extern Stage      stage;
+extern Entity *player;
+extern Stage stage;
 extern SDL_Texture *playerTexture;
 extern Game game;
 void initPlayer()
@@ -9,12 +9,13 @@ void initPlayer()
 	memset(player, 0, sizeof(Entity));
 	stage.fighterTail->next = player;
 	stage.fighterTail = player;
-	player->health = 1;
-	player->x = 100;
-	player->y = 100;
+	player->alive = 1;
+	player->x = 0;
+	player->y = rand()%SCREEN_HEIGHT;
 	player->side = SIDE_PLAYER;
 	player->texture = playerTexture;
 	SDL_QueryTexture(player->texture, NULL, NULL, &player->w, &player->h);
+	player->y-=player->h;
 }
 void doPlayer()
 {

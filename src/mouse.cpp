@@ -18,5 +18,5 @@ void updateMouse()
 }
 void drawMouse()
 {	
-	blitRect(mouseTexture, &dest, mouse.x, mouse.y);
+	drawAtXYPart(mouseTexture, &dest, mouse.x, mouse.y);
 }
