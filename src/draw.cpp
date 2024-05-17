@@ -34,6 +34,7 @@ extern SDL_Rect highscore;
 extern SDL_Rect out;
 extern SDL_Rect mouse;
 extern SDL_Rect destBackground;
+extern TTF_Font 	*ourFont;
 SDL_Rect sound;
 extern int toggle;
 void prepareScene()
@@ -82,6 +83,7 @@ void drawBackground()
 }
 void drawButton()
 {	
+	
 	SDL_Rect Background;
 	Background.x = 0;
 	Background.y = 0;

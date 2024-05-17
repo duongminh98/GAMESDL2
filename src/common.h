@@ -31,4 +31,5 @@
 #include "button.h"
 #include "threat.h"
 #include "main.h"
+#include <SDL2/SDL_ttf.h>
 #endif

@@ -7,9 +7,9 @@
 #define SIDE_PLAYER 0
 #define SIDE_ENEMY 1
 #define MAX_KEYBOARD_KEYS 350
-#define MAX_STARS 500
+#define MAX_STARS 250
 #define MAX_SND_CHANNELS 8
-#define MAX_LINE_LENGTH 1024
+#define MAX_LINE_LENGTH 40
 #define NUM_HIGHSCORES 8
 #define STRNCPY(dest, src, n) strncpy(dest, src, n); dest[n - 1] = '\0'
 #define GLYPH_HEIGHT 28

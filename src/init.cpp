@@ -31,6 +31,7 @@ SDL_Texture *flamePlayer;
 SDL_Texture *flameEnemy;
 SDL_Texture *soundOnTexture;
 SDL_Texture *soundOffTexture;
+TTF_Font 	*ourFont;
 void initSDL()
 {
 	int rendererFlags, windowFlags;
@@ -43,6 +44,7 @@ void initSDL()
 	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
     Mix_AllocateChannels(MAX_SND_CHANNELS);
+    TTF_Init();
     bulletTexture 		= IMG_LoadTexture(game.renderer,"res/bullet.png");
 	enemyTexture 		= IMG_LoadTexture(game.renderer,"res/drone_1_red (1).png");
     alienBulletTexture 	= IMG_LoadTexture(game.renderer,"res/bulletenemy.png");
@@ -74,6 +76,7 @@ void initSDL()
 	flameEnemy			= IMG_LoadTexture(game.renderer,"res/08.png");
 	soundOnTexture		= IMG_LoadTexture(game.renderer,"res/soundOnBlack.png");
 	soundOffTexture		= IMG_LoadTexture(game.renderer,"res/soundOffBlack.png");
+	ourFont 			= TTF_OpenFont("res/ariblk.ttf",72);
 }
 void cleanup()
 {	
@@ -82,6 +85,8 @@ void cleanup()
 	SDL_DestroyRenderer(game.renderer);
 	SDL_DestroyWindow(game.window);
 	SDL_Quit();
+	TTF_Quit();
+	TTF_CloseFont(ourFont);
 }
 void initGame()
 {	

@@ -52,6 +52,7 @@ void doPointsPods()
         {
             e->health = 0;
             stage.score++;
+            if(enemySpawnTimerC>0)
             enemySpawnTimerC-=10;
             playSound(SND_POINTS, CH_POINTS);
         }

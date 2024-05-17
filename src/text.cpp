@@ -11,11 +11,12 @@ extern SDL_Texture *diamondTexture;
 extern SDL_Texture *masterTexture;     
 extern SDL_Texture *challengerTexture;
 char drawTextBuffer[MAX_LINE_LENGTH];
+extern TTF_Font 	*ourFont;
 extern Highscore *newHighscore;
+using namespace std;
 extern int cursorBlink;
-void drawText(int x, int y, int r, int g,  int b,int align, const char *format, ...)
+void drawText(int x, int y, int r, int g, int b, int align, const char *format, ...)
 {
-	SDL_Rect rect;
 	va_list  args;
 	memset(&drawTextBuffer, '\0', sizeof(drawTextBuffer));
 	va_start(args, format);
@@ -32,20 +33,16 @@ void drawText(int x, int y, int r, int g,  int b,int align, const char *format, 
 			x -= (len * GLYPH_WIDTH) / 2;
 			break;
 	}
-	rect.w = GLYPH_WIDTH;
-	rect.h = GLYPH_HEIGHT;
-	rect.y = 0;
-	SDL_SetTextureColorMod(fontTexture, r, g, b);
-	for (int i = 0; i < len; i++)
-	{
-		int c = drawTextBuffer[i];
-		if (c >= ' ' and c <= 'Z')
-		{
-			rect.x = (c - ' ') * GLYPH_WIDTH;
-			blitRect(fontTexture, &rect, x, y);
-			x += GLYPH_WIDTH;
-		}
-	}
+	SDL_Surface* surfaceText = TTF_RenderText_Solid(ourFont,drawTextBuffer,{r,g,b});
+    SDL_Texture* textureText = SDL_CreateTextureFromSurface(game.renderer,surfaceText);
+    SDL_FreeSurface(surfaceText); 
+    SDL_Rect rectangle;
+    rectangle.x = x;
+    rectangle.y = y;
+    rectangle.w = len * GLYPH_WIDTH;
+    rectangle.h = GLYPH_HEIGHT;
+    SDL_RenderCopy(game.renderer,textureText,NULL,&rectangle);
+    SDL_DestroyTexture(textureText);
 	
 }
 void drawNameInput(int score)
