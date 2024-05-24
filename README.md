@@ -18,7 +18,7 @@
 |**S**|**XUỐNG**| 
 |**D**|**PHẢI**| 
 |**SPACE**|**BẮN**| 
-# **NGƯỠNG ĐIỂM MONG MUỐN: 8.5**
+# **NGƯỠNG ĐIỂM MONG MUỐN: 8-8.5**
 ## Lý do
 - Game viết có bố cục rõ ràng, tách file, dễ debug khi cần.
 - Sử dụng đầy đủ các component của SDL: SDL_image, SDL_Mixer, SDL_Font.
